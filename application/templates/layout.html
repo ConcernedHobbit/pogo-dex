@@ -6,6 +6,11 @@
   </head>
 
   <body>
+    <ul>
+      <li><a href="{{ url_for('pokemon_index') }}">List Pokémon</a></li>
+      <li><a href="{{ url_for('pokemon_form') }}">Add a Pokémon</a></li>
+    </ul>
+
     {% block body %}
       <p>
         Content.

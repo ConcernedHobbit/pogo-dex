@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('pokemon_create') }}">
+  <input type="number" name="id">
+  <input type="text" name="name">
+  <input type="number" name="generation">
+  <input type="checkbox" name="released">
+  <input type="submit" value="Add a new Pokémon">
+</form>
+{% endblock %}

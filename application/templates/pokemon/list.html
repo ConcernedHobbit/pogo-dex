@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Gen</th>
+    <th>Released</th>
+  </tr>
+  {% for pokemon in pokemon_list %}
+  <tr>
+    <td>{{ pokemon.id }}</td>
+    <td>{{ pokemon.name }}</td>
+    <td>{{ pokemon.generation }}</td>
+    <td>{{ pokemon.released }}</td>
+    {% if not pokemon.released %}
+      <td>
+        <form method="POST" action="{{ url_for('pokemon_release', pokemon_id=pokemon.id) }}">
+          <input type="submit" value="Mark as released"/>
+        </form>
+      </td>
+    {% endif %}
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
