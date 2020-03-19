@@ -25,7 +25,7 @@ Features:
 
 ## Documentation
 ![Database diagram](https://github.com/ConcernedHobbit/pogo-dex/raw/master/documentation/db.png)  
-[User stories](https://github.com/ConcernedHobbit/pogo-dex/master/documentation/stories.md)
+[User stories](https://github.com/ConcernedHobbit/pogo-dex/blob/master/documentation/stories.md)
 
 ## Heroku
 [pogodex.herokuapp.com](http://pogodex.herokuapp.com)
