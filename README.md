@@ -23,4 +23,9 @@ Features:
   + Region creation, updating, deletion (i.e. in case of region borders shifting)
   + General database info (# of overall catches, # of overall trainers etc.)
 
-![Database diagram](https://github.com/ConcernedHobbit/pogo-dex/raw/master/db.png)
+## Documentation
+![Database diagram](https://github.com/ConcernedHobbit/pogo-dex/raw/master/documentation/db.png)
+[User stories](https://github.com/ConcernedHobbit/pogo-dex/master/documentation/stories.md)
+
+## Heroku
+[pogodex.herokuapp.com](http://pogodex.herokuapp.com)
