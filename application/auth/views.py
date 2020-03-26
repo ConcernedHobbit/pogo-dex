@@ -1,6 +1,5 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user
-import bcrypt
 
 from application import app, db
 from application.auth.models import Trainer
@@ -17,21 +16,12 @@ def auth_login():
     if not form.validate():
         return render_template("auth/loginform.html", form = form, next_page = next_page)
 
-    password = form.password.data.encode()
-
-    trainer = Trainer.query.filter_by(username = form.username.data).first()
+    trainer = Trainer.query.filter_by(
+            username = form.username.data,
+            password = form.password.data
+            ).first()
 
     if not trainer:
-        return render_template("auth/loginform.html", form = form, error = "No such username or password", next_page = next_page)
-
-    db_password = trainer.password
-    if isinstance(trainer.password, str):
-        db_password = trainer.password.encode()
-
-    print(type(password))
-    print(type(db_password))
-
-    if not bcrypt.checkpw(password, db_password):
         return render_template("auth/loginform.html", form = form, error = "No such username or password", next_page = next_page)
 
     login_user(trainer)
@@ -51,11 +41,9 @@ def auth_signup():
     if not form.validate():
         return render_template("auth/signupform.html", form = form)
 
-    password = form.password.data.encode()
-
     trainer = Trainer(
             form.username.data,
-            bcrypt.hashpw(password, bcrypt.gensalt())
+            form.password.data
             )
 
     db.session.add(trainer)
