@@ -28,4 +28,7 @@ Features:
 [User stories](https://github.com/ConcernedHobbit/pogo-dex/blob/master/documentation/stories.md)
 
 ## Heroku
-[pogodex.herokuapp.com](http://pogodex.herokuapp.com)
+[pogodex.herokuapp.com](http://pogodex.herokuapp.com)  
+**Admin account details:**  
+Username: admin  
+Password: password
