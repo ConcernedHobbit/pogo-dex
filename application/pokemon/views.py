@@ -18,7 +18,7 @@ def pokemon_form():
 
 @app.route("/pokemon/", methods=["GET"])
 def pokemon_index():
-    return render_template("pokemon/list.html", pokemon_list = Pokemon.query.all())
+    return render_template("pokemon/list.html", pokemon_list = Pokemon.query.order_by(Pokemon.id).all())
 
 @app.route("/pokemon/", methods=["POST"])
 def pokemon_create():
