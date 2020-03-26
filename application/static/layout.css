@@ -1,8 +1,4 @@
-tbody.pokemon-list > tr {
-  align-items: center;
-}
-
-.responsive-label {
+tbody.pokemon-list > tr, .responsive-label {
   align-items: center;
 }
 
@@ -17,4 +13,12 @@ tbody.pokemon-list > tr {
 
 main {
   margin-top: 5px;
+}
+
+table {
+  max-height: 80% !important;
+}
+
+th {
+  position: sticky;
 }

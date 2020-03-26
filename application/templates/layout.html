@@ -8,7 +8,7 @@
   </head>
 
   <body>
-    <header>
+    <header class="sticky">
       <a href="{{ url_for('pokemon_index') }}" class="button">List Pokémon</a>
       {% if current_user.admin %}
         <a href="{{ url_for('pokemon_form') }}" class="button">Add Pokémon</a>
@@ -42,5 +42,11 @@
         <p>Content.</p>
       {% endblock %}
     </main>
+
+    <footer class="sticky">
+      <a class="button" href="https://github.com/ConcernedHobbit/pogo-dex">GitHub</a>
+      <a class="button" href="https://raunio.me">raunio.me</a>
+      <p class="button">This is a course project. If you encounter issues, raise them on GitHub.</p>
+    </footer>
   </body>
 </html>

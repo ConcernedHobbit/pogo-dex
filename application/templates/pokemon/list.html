@@ -39,7 +39,7 @@
                 {% endif %}
               </td>
               <td>
-                <a class="secondary small button" href="{{ url_for('pokemon_delete', pokemon_id = pokemon.id) }}">Delete</a>
+                <a class="secondary small button" onclick="this.textContent = 'Confirm'; setTimeout(() => { this.href = '{{ url_for('pokemon_delete', pokemon_id = pokemon.id) }}'; }, 1000);">Delete</a>
               </td>
               <td>
                 <a class="primary small button" href="{{ url_for('pokemon_edit', pokemon_id = pokemon.id) }}">Edit</a>
