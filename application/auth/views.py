@@ -20,6 +20,7 @@ def auth_login():
     password = form.password.data.encode()
 
     trainer = Trainer.query.filter_by(username = form.username.data).first()
+    print(type(trainer.password))
     if not trainer or not bcrypt.checkpw(password, trainer.password):
         return render_template("auth/loginform.html", form = form, error = "No such username or password", next_page = next_page)
 
