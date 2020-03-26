@@ -2,31 +2,24 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('pokemon_edit', pokemon_id = pokemon_id) }}">
-  <table>
-    <tr>
-      <td>ID</td>
-      <td>{{ pokemon_id }}</td>
-    </tr>
-  {% for field in form %}
-    <tr>
-      <td>{{ field.label }}</td>
-      <td>{{ field }}</td>
-      {% if field.errors %}
-      <td>
-        <ul>
-          {% for error in field.errors %}
-            <li>{{ error }}</li>
-          {% endfor %}
-        </ul>
-      </td>
-      {% endif %}
-    </tr>
-  {% endfor %}
-  <tr>
-    <td colspan="2">
-      <input type="submit" value="Edit Pokémon"/>
-    </td>
-  </tr>
-  </table>
+  <fieldset>
+    <legend>Edit a Pokémon</legend>
+
+    <div class="row responsive-label">
+      <div class="col-sm-12 col-md-2"><p>ID</p></div>
+      <div class="col-sm-12 col-md"><p>{{ pokemon_id }}</p></div>
+    </div>
+
+    {% for field in form %}
+      <div class="row responsive-label">
+        <div class="col-sm-12 col-md-2">
+          {% if field.type != "SubmitField" %}
+            {{ field.label }}
+          {% endif %}
+        </div>
+        <div class="col-sm-12 col-md">{{ field }}</div>
+      </div>
+    {% endfor %}
+  </fieldset>
 </form>
 {% endblock %}

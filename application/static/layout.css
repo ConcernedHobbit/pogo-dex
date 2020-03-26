@@ -1,0 +1,20 @@
+tbody.pokemon-list > tr {
+  align-items: center;
+}
+
+.responsive-label {
+  align-items: center;
+}
+
+.bookend {
+  float: right;
+}
+
+.card.info {
+  --card-back-color: #28a2ff; 
+  --card-border-color: #3fb502;
+}
+
+main {
+  margin-top: 5px;
+}

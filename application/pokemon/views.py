@@ -5,7 +5,7 @@ from application.pokemon.models import Pokemon
 from application.pokemon.forms import PokemonForm
 
 def required_admin(route):
-    flash("You need to be an admin to do that.")
+    flash("You need to be an admin to do that.", "warning")
     return url_for(route)
 
 @app.route("/pokemon/new/")
@@ -42,7 +42,7 @@ def pokemon_create():
 
     return redirect(url_for("pokemon_index"))
 
-@app.route("/pokemon/<pokemon_id>/release/", methods=["POST"])
+@app.route("/pokemon/<pokemon_id>/release/", methods=["POST", "GET"])
 def pokemon_release(pokemon_id):
     if not current_user.admin:
         return redirect(required_admin("pokemon_index"))
@@ -53,7 +53,8 @@ def pokemon_release(pokemon_id):
 
     return redirect(url_for("pokemon_index"))
 
-@app.route("/pokemon/<pokemon_id>/delete", methods=["POST"])
+@app.route("/pokemon/<pokemon_id>/delete", methods=["POST", "GET"])
+@login_required
 def pokemon_delete(pokemon_id):
     if not current_user.admin:
         return redirect(required_admin("pokemon_index"))
@@ -62,9 +63,11 @@ def pokemon_delete(pokemon_id):
     db.session.delete(p)
     db.session.commit()
 
+    flash(f"Deleted {p.name} from existance.", "info")
     return redirect(url_for("pokemon_index"))
 
 @app.route("/pokemon/<pokemon_id>/edit", methods=["GET", "POST"])
+@login_required
 def pokemon_edit(pokemon_id):
     if not current_user.admin:
         return redirect(required_admin("pokemon_index"))
@@ -72,7 +75,7 @@ def pokemon_edit(pokemon_id):
     p = Pokemon.query.get(pokemon_id)
 
     if not p:
-        flash("No Pokémon with that ID was found.")
+        flash("No Pokémon with that ID was found.", "warning")
         return redirect(url_for("pokemon_index"))
 
     if request.method == "GET":

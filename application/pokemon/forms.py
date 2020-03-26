@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import IntegerField, StringField, BooleanField, validators
+from wtforms import IntegerField, StringField, BooleanField, SubmitField, validators
 from wtforms.widgets import html5
 
 class PokemonForm(FlaskForm):
@@ -29,6 +29,8 @@ class PokemonForm(FlaskForm):
     released = BooleanField(
             label = "Released"
             )
+
+    submit = SubmitField()
 
     class Meta:
         csrf = False

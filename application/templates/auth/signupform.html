@@ -1,29 +1,22 @@
 {% extends "layout.html" %}
 
 {% block body %}
-{{ error }}
-<form method="POST" action="{{ url_for('auth_signup') }}">
-<table>
-  {% for field in form %}
-  <tr>
-    <td>{{ field.label }}</td>
-    <td>{{ field }}</td>
-    {% if field.errors %}
-    <td>
-      <ul>
-        {% for error in field.errors %}
-        <li>{{ error }}</li>
-        {% endfor %}
-      </ul>
-    </td>
-    {% endif %}
-  </tr>
-  {% endfor %} 
-  <tr>
-    <td colspan="2">
-      <input type="submit" value="Sign up"/>
-    </td>
-  </tr>
-  </table>
-</form>
+  <form method="POST" action="{{ url_for('auth_signup') }}">
+    <fieldset>
+      <legend>Sign up</legend>
+
+      {% for field in form %}
+        <div class="row responsive-label">
+          <div class="col-sm-12 col-md-2">
+            {% if field.type != "SubmitField" %}
+              {{ field.label }}
+            {% endif %}
+          </div>
+          <div class="col-sm-12 col-md">
+            {{ field }}
+          </div>
+        </div>
+      {% endfor %}
+    </fieldset>
+  </form>
 {% endblock %}
