@@ -21,11 +21,14 @@ def auth_login():
 
     trainer = Trainer.query.filter_by(username = form.username.data).first()
 
+    if not trainer:
+        return render_template("auth/loginform.html", form = form, error = "No such username or password", next_page = next_page)
+
     db_password = trainer.password
     if isinstance(trainer.password, str):
         db_password = trainer.password.encode()
 
-    if not trainer or not bcrypt.checkpw(password, db_password):
+    if not bcrypt.checkpw(password, db_password):
         return render_template("auth/loginform.html", form = form, error = "No such username or password", next_page = next_page)
 
     login_user(trainer)
