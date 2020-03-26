@@ -11,14 +11,19 @@ tbody.pokemon-list > tr, .responsive-label {
   --card-border-color: #3fb502;
 }
 
+html, body {
+  height: 100%;
+}
+
 main {
   margin-top: 5px;
+  min-height: 88vh;
 }
 
 table {
-  max-height: 80% !important;
+  max-height: 88vh !important;
 }
 
-th {
-  position: sticky;
+footer {
+  padding: 0;
 }
