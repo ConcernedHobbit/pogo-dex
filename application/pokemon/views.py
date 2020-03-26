@@ -1,10 +1,11 @@
 from application import app, db
 from flask import redirect, render_template, request, url_for
 from application.pokemon.models import Pokemon
+from application.pokemon.forms import PokemonForm
 
 @app.route("/pokemon/new/")
 def pokemon_form():
-    return render_template("pokemon/new.html")
+    return render_template("pokemon/new.html", form = PokemonForm())
 
 @app.route("/pokemon/", methods=["GET"])
 def pokemon_index():
@@ -12,15 +13,16 @@ def pokemon_index():
 
 @app.route("/pokemon/", methods=["POST"])
 def pokemon_create():
-    print(request.form.get("id"))
-    print(request.form.get("name"))
-    print(request.form.get("generation"))
-    print(request.form.get("released"))
+    form = PokemonForm(request.form)
+
+    if not form.validate():
+        return render_template("pokemon/new.html", form = form)
+
     p = Pokemon(
-            request.form.get("id"),
-            request.form.get("name"),
-            request.form.get("generation"),
-            True if (request.form.get("released") == "on") else False
+            form.id.data,
+            form.name.data,
+            form.generation.data,
+            form.released.data
             )
 
     db.session.add(p)
