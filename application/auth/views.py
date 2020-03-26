@@ -28,6 +28,9 @@ def auth_login():
     if isinstance(trainer.password, str):
         db_password = trainer.password.encode()
 
+    print(type(password))
+    print(type(db_password))
+
     if not bcrypt.checkpw(password, db_password):
         return render_template("auth/loginform.html", form = form, error = "No such username or password", next_page = next_page)
 
