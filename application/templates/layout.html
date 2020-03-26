@@ -6,6 +6,15 @@
   </head>
 
   <body>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
     {% if current_user.is_authenticated %}
     <p>
       Logged in as {{ current_user.username }}. <a href="{{ url_for('auth_logout') }}">Log out.</a>
@@ -15,7 +24,9 @@
     {% endif %}
     <ul>
       <li><a href="{{ url_for('pokemon_index') }}">List Pokémon</a></li>
-      <li><a href="{{ url_for('pokemon_form') }}">Add a Pokémon</a></li>
+      {% if current_user.admin %}
+        <li><a href="{{ url_for('pokemon_form') }}">Add a Pokémon</a></li>
+      {% endif %}
     </ul>
 
     {% block body %}
