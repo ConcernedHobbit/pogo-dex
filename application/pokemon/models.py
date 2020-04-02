@@ -16,7 +16,7 @@ class Pokemon(db.Model):
     @staticmethod
     def amount_released():
         stmt = text("SELECT COUNT(id) FROM Pokemon"
-                    " WHERE released = 1")
+                    " WHERE released = '1'")
         res = db.engine.execute(stmt)
         return res.first().values()[0]
 
