@@ -42,7 +42,7 @@ class Pogodex(db.Model):
         stmt = text("SELECT AVG(caught) FROM "
                     " (SELECT COUNT(Pogodex.pokemon_id) caught FROM"
                     " Trainer LEFT JOIN Pogodex ON Trainer.id = Pogodex.trainer_id"
-                    " GROUP BY Trainer.id)")
+                    " GROUP BY Trainer.id) sub")
         res = db.engine.execute(stmt)
         return res.first().values()[0]
 
