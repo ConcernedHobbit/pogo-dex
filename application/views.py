@@ -10,10 +10,10 @@ def index():
         return render_template("index.html",
                 amount_released = Pokemon.amount_released(),
                 amount_caught = Pogodex.amount_caught(current_user.id),
-                average_caught = Pogodex.average_caught(),
+                average_caught = f'{Pogodex.average_caught():.3g}',
                 amount_trainers = Trainer.amount())
     else:
         return render_template("index.html",
                 amount_released = Pokemon.amount_released(),
-                average_caught = Pogodex.average_caught(),
+                average_caught = f'{Pogodex.average_caught():.3g}',
                 amount_trainers = Trainer.amount())
