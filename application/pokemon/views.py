@@ -1,7 +1,7 @@
 from application import app, db
 from flask import redirect, render_template, request, url_for, flash
 from flask_login import login_required, current_user
-from application.pokemon.models import Pokemon
+from application.pokemon.models import Pokemon, Pogodex
 from application.pokemon.forms import PokemonForm
 
 def required_admin(route):
@@ -19,6 +19,32 @@ def pokemon_form():
 @app.route("/pokemon/", methods=["GET"])
 def pokemon_index():
     return render_template("pokemon/list.html", pokemon_list = Pokemon.query.order_by(Pokemon.id).all())
+
+@app.route("/pokemon/<pokemon_id>/add", methods=["POST", "GET"])
+@login_required
+def pokemon_add(pokemon_id):
+    p = Pokemon.query.get(pokemon_id)
+    if not p.released:
+        flash("That Pokémon has not been released.", "warning")
+        return redirect(url_for("pokemon_index"))
+
+    check = Pogodex.query.filter_by(
+            trainer_id = current_user.id,
+            pokemon_id = pokemon_id
+            ).first()
+
+    if check:
+        print(check)
+        flash("You already have that Pokémon in your Pokédex.", "warning")
+        return redirect(url_for("pokemon_index"))
+
+    dex_entry = Pogodex(current_user.id, pokemon_id)
+
+    db.session.add(dex_entry)
+    db.session.commit()
+
+    return redirect(url_for("pokemon_index"))
+
 
 @app.route("/pokemon/", methods=["POST"])
 def pokemon_create():

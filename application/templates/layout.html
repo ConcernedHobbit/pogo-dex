@@ -9,6 +9,7 @@
 
   <body>
     <header class="sticky">
+      <a href="{{ url_for('index') }}" class="button">Pogodex</a>
       <a href="{{ url_for('pokemon_index') }}" class="button">List Pokémon</a>
       {% if current_user.admin %}
         <a href="{{ url_for('pokemon_form') }}" class="button">Add Pokémon</a>

@@ -11,6 +11,7 @@
             <th>Name</th>
             <th>Gen</th>
             <th>Released</th>
+            <th></th>
             {% if current_user.admin %}
               <th></th>
               <th></th>
@@ -30,6 +31,15 @@
                 {{ "Yes" if pokemon.released else "No" }}
               </mark>
             </td>
+
+            <td>
+              {% if current_user.is_authenticated and pokemon.released %}
+                <a class="primary small button" href="{{ url_for('pokemon_add', pokemon_id = pokemon.id) }}">Add</a>
+              {% else %}
+                <button class="small button" disabled="disabled">Add</button>
+              {% endif %}
+            </td>
+
             {% if current_user.admin %}
               <td>
                 {% if pokemon.released %}

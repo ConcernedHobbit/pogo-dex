@@ -1,4 +1,5 @@
 from application import db
+from sqlalchemy.sql import text
 
 class Trainer(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -24,3 +25,9 @@ class Trainer(db.Model):
 
     def is_authenticated(self):
         return True
+
+    @staticmethod
+    def amount():
+        stmt = text("SELECT COUNT(id) FROM Trainer")
+        res = db.engine.execute(stmt)
+        return res.first().values()[0]

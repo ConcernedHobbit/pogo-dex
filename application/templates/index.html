@@ -1,7 +1,10 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <p>
-    Hello world!
-  </p>
+  {% if current_user.is_authenticated %}
+    <p>Pokémon caught: <span>{{ amount_caught }}</span>/<span>{{ amount_released }}</span></p> 
+  {% else %}
+    <p>Pokémon released: <span>{{ amount_released }}</span></p>
+  {% endif %}
+  <p>Average catches is {{ average_caught }} among {{ amount_trainers }} trainers</p> 
 {% endblock %}
