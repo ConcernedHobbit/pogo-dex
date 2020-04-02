@@ -1,9 +1,9 @@
 # User stories
 - [x] As a user, I can sign up and log in to the service.  
-- [ ] As a user, I can add Pokémon to my Pokédex
+- [x] As a user, I can add Pokémon to my Pokédex
 - [ ] As a user, I can view my Pokédex and see its completeness at a glance
 - [x] As a user, I can view the list of Pokémon
-- [ ] As a user, I can view statistics about which Pokémon have been released
+- [x] As a user, I can view statistics about which Pokémon have been released
 - [x] As an admin, I can create a Pokémon
 - [x] As an admin, I can mark a Pokémon as released
 - [ ] As an admin, I can update a Pokémon's id, name, generation and region details
@@ -11,4 +11,4 @@
 - [ ] As an admin, I can create a region
 - [ ] As an admin, I can update a region's name and description
 - [ ] As an admin, I can delete a region
-- [ ] As an admin, I can view information about trainers, such as how many have registered and how many overall catches there are
+- [x] As an admin, I can view information about trainers, such as how many have registered and how many overall catches there are
