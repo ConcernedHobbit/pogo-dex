@@ -1,19 +1,11 @@
-from application import app, db
+from application import app, db, login_required
 from flask import redirect, render_template, request, url_for, flash
-from flask_login import login_required, current_user
 from application.pokemon.models import Pokemon, Pogodex
 from application.pokemon.forms import PokemonForm
 
-def required_admin(route):
-    flash("You need to be an admin to do that.", "warning")
-    return url_for(route)
-
 @app.route("/pokemon/new/")
-@login_required
+@login_required(admin=True)
 def pokemon_form():
-    if not current_user.admin:
-        return redirect(required_admin("pokemon_index"))
-
     return render_template("pokemon/new.html", form = PokemonForm())
 
 @app.route("/pokemon/", methods=["GET"])
@@ -47,10 +39,8 @@ def pokemon_add(pokemon_id):
 
 
 @app.route("/pokemon/", methods=["POST"])
+@login_required(admin=True)
 def pokemon_create():
-    if not current_user.admin:
-        return redirect(required_admin("pokemon_index"))
-
     form = PokemonForm(request.form)
 
     if not form.validate():
@@ -69,10 +59,8 @@ def pokemon_create():
     return redirect(url_for("pokemon_index"))
 
 @app.route("/pokemon/<pokemon_id>/release/", methods=["POST", "GET"])
+@login_required(admin=True)
 def pokemon_release(pokemon_id):
-    if not current_user.admin:
-        return redirect(required_admin("pokemon_index"))
-
     p = Pokemon.query.get(pokemon_id)
     p.released = True
     db.session.commit()
@@ -80,11 +68,8 @@ def pokemon_release(pokemon_id):
     return redirect(url_for("pokemon_index"))
 
 @app.route("/pokemon/<pokemon_id>/delete", methods=["POST", "GET"])
-@login_required
+@login_required(admin=True)
 def pokemon_delete(pokemon_id):
-    if not current_user.admin:
-        return redirect(required_admin("pokemon_index"))
-
     p = Pokemon.query.get(pokemon_id)
     db.session.delete(p)
     db.session.commit()
@@ -93,11 +78,8 @@ def pokemon_delete(pokemon_id):
     return redirect(url_for("pokemon_index"))
 
 @app.route("/pokemon/<pokemon_id>/edit", methods=["GET", "POST"])
-@login_required
+@login_required(admin=True)
 def pokemon_edit(pokemon_id):
-    if not current_user.admin:
-        return redirect(required_admin("pokemon_index"))
-
     p = Pokemon.query.get(pokemon_id)
 
     if not p:
