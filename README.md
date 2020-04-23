@@ -28,7 +28,7 @@ Features:
 [User stories](https://github.com/ConcernedHobbit/pogo-dex/blob/master/documentation/stories.md)
 
 ## Heroku
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)  
 [pogodex.herokuapp.com](http://pogodex.herokuapp.com)  
 **Admin account details:**  
 Username: admin  
