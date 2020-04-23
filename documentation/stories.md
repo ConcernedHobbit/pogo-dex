@@ -6,9 +6,9 @@
 - [x] As a user, I can view statistics about which Pokémon have been released
 - [x] As an admin, I can create a Pokémon
 - [x] As an admin, I can mark a Pokémon as released
-- [ ] As an admin, I can update a Pokémon's id, name, generation and region details
+- [x] As an admin, I can update a Pokémon's ~~id,~~ name, generation ~~and region details~~
 - [x] As an admin, I can delete a Pokémon
-- [ ] As an admin, I can create a region
-- [ ] As an admin, I can update a region's name and description
-- [ ] As an admin, I can delete a region
+- ~~[ ] As an admin, I can create a region~~
+- ~~[ ] As an admin, I can update a region's name and description~~
+- ~~[ ] As an admin, I can delete a region~~
 - [x] As an admin, I can view information about trainers, such as how many have registered and how many overall catches there are
