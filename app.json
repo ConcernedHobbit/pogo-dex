@@ -1,14 +1,16 @@
 {
     "name": "Pogo Dex",
     "description": "Web app for tracking Pokémon Go's pokédex",
-    "repository": "https://github.com/concernedhobbit/pogo-dex",
+    "repository": "https://github.com/ConcernedHobbit/pogo-dex",
     "buildpacks": [
         {
             "url": "heroku/python"
         }
     ],
     "addons": [
-        "heroku-postgresql"
+        {
+            "plan": "heroku-postgresql"
+        }
     ],
     "env": {
         "HEROKU": {
