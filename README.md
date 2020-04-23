@@ -29,6 +29,10 @@ Features:
 
 ## Heroku
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)  
+To enable admin privileges for an account, you need to manually query the PostgreSQL database.  
+Run `heroku pg:psql` once you have [installed Postgres locally](https://devcenter.heroku.com/articles/heroku-postgresql#local-setup).  
+Enter the query `UPDATE Trainer SET admin = 't' WHERE username = '<username of the person>'`. 
+### Public demo 
 [pogodex.herokuapp.com](http://pogodex.herokuapp.com)  
 **Admin account details:**  
 Username: admin  
