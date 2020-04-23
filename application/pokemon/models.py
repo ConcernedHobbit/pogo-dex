@@ -44,5 +44,9 @@ class Pogodex(db.Model):
                     " Trainer LEFT JOIN Pogodex ON Trainer.id = Pogodex.trainer_id"
                     " GROUP BY Trainer.id) sub")
         res = db.engine.execute(stmt)
-        return res.first().values()[0]
-
+        ret = res.first().values()[0]
+        
+        if ret:
+            return ret
+        else:
+            return 0
