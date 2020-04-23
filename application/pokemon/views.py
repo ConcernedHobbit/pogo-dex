@@ -1,5 +1,6 @@
 from application import app, db, login_required
 from flask import redirect, render_template, request, url_for, flash
+from flask_login import current_user
 from application.pokemon.models import Pokemon, Pogodex
 from application.pokemon.forms import PokemonForm
 
